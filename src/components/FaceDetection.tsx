@@ -163,7 +163,7 @@ export function FaceDetection() {
   };
 
   const handleWheel = (e: React.WheelEvent<HTMLCanvasElement>) => {
-    if (!cameraEnabled && uploadedImage && canvasRef.current) {
+    if (!cameraEnabled && uploadedImage && canvasRef.current && e.ctrlKey) {
       e.preventDefault();
       const zoomAmount = e.deltaY > 0 ? 0.9 : 1.1;
       const canvas = canvasRef.current;
@@ -260,7 +260,7 @@ export function FaceDetection() {
                     ref={canvasRef}
                     width={1280}
                     height={720}
-                    className="w-full h-full object-contain touch-none"
+                    className="w-full h-full object-contain"
                     onPointerDown={handlePointerDown}
                     onPointerMove={handlePointerMove}
                     onPointerUp={handlePointerUp}
@@ -491,7 +491,8 @@ export function FaceDetection() {
                       ⚡
                     </span>
                     <span>
-                      Drag to reposition and scroll/pinch to zoom images
+                      Drag to reposition images. Use Ctrl+scroll or pinch to
+                      zoom
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
